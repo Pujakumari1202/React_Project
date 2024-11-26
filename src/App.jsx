@@ -26,7 +26,7 @@ function App() {
   function addPost(){
 
   }
-
+  
   //then iterate and render here
   //final array
   return (
