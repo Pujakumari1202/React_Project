@@ -4,15 +4,9 @@ import './App.css'
 
 function App() {
 
-  //original array
-  const posts=[{
-    name:"puja",
-    time: "2m ago",
-    image:"https://avatars.githubusercontent.com/u/149191257?v=4",
-    description:"What to know to win big? Check out how these folks won $6000 in bounties"
-  }];
+  const [posts,setPosts]=useState([]);
 
-
+ 
   //convert array of object
   const postComponents=posts.map(post => <PostComponent
     name={post.name}
@@ -24,6 +18,16 @@ function App() {
   />)
 
   function addPost(){
+    setPosts([...posts,{
+       name:"puja",
+       subtitle:"10000 followers",
+       time: "2m ago",
+       image:"https://avatars.githubusercontent.com/u/149191257?v=4",
+       description:"What to know to win big? Check out how these folks won $6000 in bounties"
+ 
+ 
+    
+    }])
 
   }
   
