@@ -1,48 +1,18 @@
 import {useState} from "react";
-import {PostComponent} from "./Post";
-import './App.css'
+import "./App.css";
 
-function App() {
 
-  const [posts,setPosts]=useState([]);
+function App(){
 
- 
-  //convert array of object
-  const postComponents=posts.map(post => <PostComponent
-    name={post.name}
-    subtitle={post.subtitle}
-    time={post.time}
-    image={post.image}
-    description={post.description}
+  const [currentTab, setCurrentTab] = useState("feed");
 
-  />)
+  return <div>
+    <button onClick={function(){setCurrentTab("feed")}} style={{color: currentTab=="feed"? "red" : "black"}}>Feed</button>
+    <button onClick={function(){setCurrentTab("notifications")  }} style={{color:currentTab=="notifications"? "red" : "black"}}>Notifications</button>
+    <button onClick={function(){setCurrentTab("messages")}} style={{color: currentTab =="messages" ? "red": "black"}}>messages</button>
+    <button onClick={function(){setCurrentTab("jobs")}} style={{color : currentTab=="jobs"? "red" : "black"}}>Jobs</button>
+  </div>
 
-  function addPost(){
-    setPosts([...posts,{
-       name:"puja",
-       subtitle:"10000 followers",
-       time: "2m ago",
-       image:"https://avatars.githubusercontent.com/u/149191257?v=4",
-       description:"What to know to win big? Check out how these folks won $6000 in bounties"
- 
- 
-    
-    }])
-
-  }
-  
-  //then iterate and render here
-  //final array
-  return (
-    <div style={{background:"#dfe6e9", height: "100vh"}}>
-      <button onClick={addPost}>Add Post</button>
-      <div style={{display:"flex", justifyContent: "center"}}>
-        <div>
-          {postComponents}
-        </div>
-       </div>
-     </div>
-  )
 }
 
 export default App;
