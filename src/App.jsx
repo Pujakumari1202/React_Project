@@ -1,18 +1,77 @@
-import {useState} from "react";
 import "./App.css";
+import {BrowserRouter, Routes, Route, Link, useNavigate, Outlet} from "react-router-dom";
 
 
 function App(){
-
-  const [currentTab, setCurrentTab] = useState("feed");
-
   return <div>
-    <button onClick={function(){setCurrentTab("feed")}} style={{color: currentTab=="feed"? "red" : "black"}}>Feed</button>
-    <button onClick={function(){setCurrentTab("notifications")  }} style={{color:currentTab=="notifications"? "red" : "black"}}>Notifications</button>
-    <button onClick={function(){setCurrentTab("messages")}} style={{color: currentTab =="messages" ? "red": "black"}}>messages</button>
-    <button onClick={function(){setCurrentTab("jobs")}} style={{color : currentTab=="jobs"? "red" : "black"}}>Jobs</button>
+    <BrowserRouter>
+      <Routes >
+        <Route path="/" element={<Layout/>}>
+          <Route path="/neet/online-coaching-class-11" element={<Class11Program/>}/>
+          <Route path="/neet/online-coaching-class-12" element={<Class12Program/>}/>
+          <Route path="/" element={<Langing/>}/>
+          <Route path="*" element={<ErrorPage/>}/>
+        </Route>
+      </Routes>
+      Footer | Contact us
+    </BrowserRouter>
+  </div>
+  
+}
+
+
+function Layout(){
+  return <div style={{height: "100vh"}}>
+    <Link to="/">Allen</Link>
+      |
+     <Link to="/neet/online-coaching-class-11">Class 11</Link>
+      |
+     <Link to="/neet/online-coaching-class-12">Class 12</Link>
+     
+     <div style={{height:"90vh"}}>
+      <Outlet/>
+     </div>
+    
+
+    footer
+  </div>
+}
+
+function ErrorPage(){
+  return <div>
+    Sorry page not found
+
+  </div>
+}
+function Class11Program(){
+  return <div>
+    class 11 programs
   </div>
 
+}
+
+function Class12Program(){
+  
+    const navigate=useNavigate();
+
+    function redirectUser(){
+      navigate("/");
+    }
+
+    
+
+  return <div> 
+    NEET programs for Class 12
+    <button onClick={redirectUser}>Go back to the landing page</button>
+
+  </div>
+  
+}
+
+function Langing(){
+  return <div>
+    langing
+  </div>
 }
 
 export default App;
